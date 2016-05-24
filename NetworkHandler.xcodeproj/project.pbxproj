@@ -7,15 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		795830821CF3CBF60097AD26 /* BaseUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795830811CF3CBF60097AD26 /* BaseUpload.swift */; };
+		795830841CF3D05D0097AD26 /* UploadHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795830831CF3D05D0097AD26 /* UploadHandler.swift */; };
+		795830861CF3D35A0097AD26 /* Upload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795830851CF3D35A0097AD26 /* Upload.swift */; };
+		795830881CF3D4DE0097AD26 /* UploadFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795830871CF3D4DE0097AD26 /* UploadFile.swift */; };
 		799365A71CE6B7A3008CC705 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799365A61CE6B7A3008CC705 /* AppDelegate.swift */; };
 		799365A91CE6B7A3008CC705 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799365A81CE6B7A3008CC705 /* ViewController.swift */; };
 		799365AC1CE6B7A3008CC705 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 799365AA1CE6B7A3008CC705 /* Main.storyboard */; };
 		799365AF1CE6B7A3008CC705 /* NetworkHandler.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 799365AD1CE6B7A3008CC705 /* NetworkHandler.xcdatamodeld */; };
 		799365B11CE6B7A3008CC705 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 799365B01CE6B7A3008CC705 /* Assets.xcassets */; };
 		799365B41CE6B7A3008CC705 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 799365B21CE6B7A3008CC705 /* LaunchScreen.storyboard */; };
+		799365BC1CE6B815008CC705 /* BaseIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799365BB1CE6B815008CC705 /* BaseIO.swift */; };
+		799365BE1CE6B8BF008CC705 /* NetworkIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799365BD1CE6B8BF008CC705 /* NetworkIO.swift */; };
+		799365C21CE6BEA6008CC705 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799365C11CE6BEA6008CC705 /* Util.swift */; };
+		799365C71CE6C5FD008CC705 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799365C61CE6C5FD008CC705 /* File.swift */; };
+		799365C91CE6C63E008CC705 /* Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799365C81CE6C63E008CC705 /* Download.swift */; };
+		799365CB1CE6C7F8008CC705 /* DownloadHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799365CA1CE6C7F8008CC705 /* DownloadHandler.swift */; };
+		799365CD1CE6D08D008CC705 /* BaseDownload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799365CC1CE6D08D008CC705 /* BaseDownload.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		795830811CF3CBF60097AD26 /* BaseUpload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUpload.swift; sourceTree = "<group>"; };
+		795830831CF3D05D0097AD26 /* UploadHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadHandler.swift; sourceTree = "<group>"; };
+		795830851CF3D35A0097AD26 /* Upload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Upload.swift; sourceTree = "<group>"; };
+		795830871CF3D4DE0097AD26 /* UploadFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadFile.swift; sourceTree = "<group>"; };
 		799365A31CE6B7A3008CC705 /* NetworkHandler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetworkHandler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		799365A61CE6B7A3008CC705 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		799365A81CE6B7A3008CC705 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -24,6 +39,13 @@
 		799365B01CE6B7A3008CC705 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		799365B31CE6B7A3008CC705 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		799365B51CE6B7A3008CC705 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		799365BB1CE6B815008CC705 /* BaseIO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseIO.swift; sourceTree = "<group>"; };
+		799365BD1CE6B8BF008CC705 /* NetworkIO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkIO.swift; sourceTree = "<group>"; };
+		799365C11CE6BEA6008CC705 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		799365C61CE6C5FD008CC705 /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		799365C81CE6C63E008CC705 /* Download.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Download.swift; sourceTree = "<group>"; };
+		799365CA1CE6C7F8008CC705 /* DownloadHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadHandler.swift; sourceTree = "<group>"; };
+		799365CC1CE6D08D008CC705 /* BaseDownload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseDownload.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +59,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		795830801CF3CBAB0097AD26 /* Uploads */ = {
+			isa = PBXGroup;
+			children = (
+				795830811CF3CBF60097AD26 /* BaseUpload.swift */,
+				795830831CF3D05D0097AD26 /* UploadHandler.swift */,
+				795830851CF3D35A0097AD26 /* Upload.swift */,
+				795830871CF3D4DE0097AD26 /* UploadFile.swift */,
+			);
+			name = Uploads;
+			sourceTree = "<group>";
+		};
 		7993659A1CE6B7A3008CC705 = {
 			isa = PBXGroup;
 			children = (
@@ -56,6 +89,8 @@
 		799365A51CE6B7A3008CC705 /* NetworkHandler */ = {
 			isa = PBXGroup;
 			children = (
+				799365C41CE6C585008CC705 /* Upload & Download */,
+				799365C31CE6C56F008CC705 /* Networking */,
 				799365A61CE6B7A3008CC705 /* AppDelegate.swift */,
 				799365A81CE6B7A3008CC705 /* ViewController.swift */,
 				799365AA1CE6B7A3008CC705 /* Main.storyboard */,
@@ -65,6 +100,36 @@
 				799365AD1CE6B7A3008CC705 /* NetworkHandler.xcdatamodeld */,
 			);
 			path = NetworkHandler;
+			sourceTree = "<group>";
+		};
+		799365C31CE6C56F008CC705 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				799365BB1CE6B815008CC705 /* BaseIO.swift */,
+				799365BD1CE6B8BF008CC705 /* NetworkIO.swift */,
+				799365C11CE6BEA6008CC705 /* Util.swift */,
+			);
+			name = Networking;
+			sourceTree = "<group>";
+		};
+		799365C41CE6C585008CC705 /* Upload & Download */ = {
+			isa = PBXGroup;
+			children = (
+				795830801CF3CBAB0097AD26 /* Uploads */,
+				799365CE1CE6D168008CC705 /* Dowlaods */,
+				799365C61CE6C5FD008CC705 /* File.swift */,
+			);
+			name = "Upload & Download";
+			sourceTree = "<group>";
+		};
+		799365CE1CE6D168008CC705 /* Dowlaods */ = {
+			isa = PBXGroup;
+			children = (
+				799365C81CE6C63E008CC705 /* Download.swift */,
+				799365CA1CE6C7F8008CC705 /* DownloadHandler.swift */,
+				799365CC1CE6D08D008CC705 /* BaseDownload.swift */,
+			);
+			name = Dowlaods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,8 +203,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				799365BE1CE6B8BF008CC705 /* NetworkIO.swift in Sources */,
+				795830841CF3D05D0097AD26 /* UploadHandler.swift in Sources */,
+				799365C91CE6C63E008CC705 /* Download.swift in Sources */,
+				799365CD1CE6D08D008CC705 /* BaseDownload.swift in Sources */,
+				795830881CF3D4DE0097AD26 /* UploadFile.swift in Sources */,
+				799365CB1CE6C7F8008CC705 /* DownloadHandler.swift in Sources */,
+				799365C21CE6BEA6008CC705 /* Util.swift in Sources */,
+				795830861CF3D35A0097AD26 /* Upload.swift in Sources */,
+				799365C71CE6C5FD008CC705 /* File.swift in Sources */,
 				799365A91CE6B7A3008CC705 /* ViewController.swift in Sources */,
+				795830821CF3CBF60097AD26 /* BaseUpload.swift in Sources */,
 				799365A71CE6B7A3008CC705 /* AppDelegate.swift in Sources */,
+				799365BC1CE6B815008CC705 /* BaseIO.swift in Sources */,
 				799365AF1CE6B7A3008CC705 /* NetworkHandler.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -254,6 +330,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = NetworkHandler/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.intel.NetworkHandler;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -265,6 +342,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = NetworkHandler/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.intel.NetworkHandler;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -290,6 +368,7 @@
 				799365BA1CE6B7A3008CC705 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
