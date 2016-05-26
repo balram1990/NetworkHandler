@@ -24,6 +24,8 @@
 		799365C91CE6C63E008CC705 /* Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799365C81CE6C63E008CC705 /* Download.swift */; };
 		799365CB1CE6C7F8008CC705 /* DownloadHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799365CA1CE6C7F8008CC705 /* DownloadHandler.swift */; };
 		799365CD1CE6D08D008CC705 /* BaseDownload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799365CC1CE6D08D008CC705 /* BaseDownload.swift */; };
+		79B004A31CF5E0B400A6987D /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B004A21CF5E0B400A6987D /* Preferences.swift */; };
+		79B004A51CF5EF7400A6987D /* Reach.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B004A41CF5EF7400A6987D /* Reach.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,8 @@
 		799365C81CE6C63E008CC705 /* Download.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Download.swift; sourceTree = "<group>"; };
 		799365CA1CE6C7F8008CC705 /* DownloadHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadHandler.swift; sourceTree = "<group>"; };
 		799365CC1CE6D08D008CC705 /* BaseDownload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseDownload.swift; sourceTree = "<group>"; };
+		79B004A21CF5E0B400A6987D /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
+		79B004A41CF5EF7400A6987D /* Reach.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reach.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +102,8 @@
 				799365B21CE6B7A3008CC705 /* LaunchScreen.storyboard */,
 				799365B51CE6B7A3008CC705 /* Info.plist */,
 				799365AD1CE6B7A3008CC705 /* NetworkHandler.xcdatamodeld */,
+				79B004A21CF5E0B400A6987D /* Preferences.swift */,
+				79B004A41CF5EF7400A6987D /* Reach.swift */,
 			);
 			path = NetworkHandler;
 			sourceTree = "<group>";
@@ -205,12 +211,14 @@
 			files = (
 				799365BE1CE6B8BF008CC705 /* NetworkIO.swift in Sources */,
 				795830841CF3D05D0097AD26 /* UploadHandler.swift in Sources */,
+				79B004A31CF5E0B400A6987D /* Preferences.swift in Sources */,
 				799365C91CE6C63E008CC705 /* Download.swift in Sources */,
 				799365CD1CE6D08D008CC705 /* BaseDownload.swift in Sources */,
 				795830881CF3D4DE0097AD26 /* UploadFile.swift in Sources */,
 				799365CB1CE6C7F8008CC705 /* DownloadHandler.swift in Sources */,
 				799365C21CE6BEA6008CC705 /* Util.swift in Sources */,
 				795830861CF3D35A0097AD26 /* Upload.swift in Sources */,
+				79B004A51CF5EF7400A6987D /* Reach.swift in Sources */,
 				799365C71CE6C5FD008CC705 /* File.swift in Sources */,
 				799365A91CE6B7A3008CC705 /* ViewController.swift in Sources */,
 				795830821CF3CBF60097AD26 /* BaseUpload.swift in Sources */,

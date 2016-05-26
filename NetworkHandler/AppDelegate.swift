@@ -14,9 +14,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var backgroundSessionCompletionHandler: (() -> Void)?
-
+    var reach  = Reach()
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        testPreferences()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(networkChanged), name: ReachabilityStatusChangedNotification, object: nil)
+        self.reach.monitorReachabilityChanges()
         return true
     }
     
@@ -36,6 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        
     }
 
     func applicationWillTerminate(application: UIApplication) {
@@ -110,6 +114,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: () -> Void) {
         backgroundSessionCompletionHandler = completionHandler
+    }
+    
+    //Example method on how to use prefernces
+    func testPreferences () {
+        Preferences.setUsername("Balram")
+        let username =  Preferences.getUsername()
+        print("\(username)")
+    }
+    
+    func networkChanged () {
+        NSLog("Network Changed \(reach.connectionStatus())")
     }
 }
 
