@@ -17,7 +17,7 @@ class ErrorCodes {
 }
 
 class NetworkIO: BaseIO {
-    static var baseUrl = "www.somedummyserver.com"
+    static var baseUrl = "http://test-mptablets.com/"
     func get(url: String, callback: (NSData?, NSURLResponse?, NSError?) -> Void) {
         doService("GET", url: url, body: nil, completionHandler: callback)
     }

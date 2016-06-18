@@ -12,6 +12,7 @@ class Preferences: NSObject {
     
     static let kUsername = "USER_NAME"
     static let kEmail = "EMAIL"
+    
     static let Defaults = NSUserDefaults.standardUserDefaults()
     
     class func getUsername () -> String? {

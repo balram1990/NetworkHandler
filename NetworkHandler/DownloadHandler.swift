@@ -19,7 +19,7 @@ class DownloadHandler: NSObject, BaseDownload, NSURLSessionDelegate {
     
     lazy var downlaodSession : NSURLSession = {
         let configuration = NSURLSessionConfiguration.backgroundSessionConfigurationWithIdentifier("bgDownloadSessionConfiguration")
-        let session = NSURLSession(configuration: configuration, delegate: nil, delegateQueue: nil)
+        let session = NSURLSession(configuration: configuration, delegate: self, delegateQueue: nil)
         return session
     }()
     
@@ -34,7 +34,14 @@ class DownloadHandler: NSObject, BaseDownload, NSURLSessionDelegate {
         if let urlString =  file.url, url =  NSURL(string: urlString)  {
             //create download task of downlaod
             let aDownload =  Download(url: urlString)
-            aDownload.downlaodTask = downlaodSession.downloadTaskWithURL(url)
+            let urlNew = NSURL(string: "http://test-mptablets.com/MountainPowerRestService/InformationDocs.svc/DownloadInformationDocument")
+            let request = NSMutableURLRequest(URL: urlNew!)
+            request.HTTPMethod = "POST"
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            let json : [String : AnyObject] = ["FileName" : file.name!, "InformationID" : file.informationID!]
+            request.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(json, options: [])
+            aDownload.downlaodTask = downlaodSession.downloadTaskWithRequest(request)
+            aDownload.downlaodTask?.taskDescription = file.name
             aDownload.downlaodTask?.resume()
             //update downloading status
             aDownload.isDownloading = true
@@ -122,7 +129,7 @@ class DownloadHandler: NSObject, BaseDownload, NSURLSessionDelegate {
     }
     
     func URLSession(session: NSURLSession, downloadTask: NSURLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
-        
+        print("Task Description : \(downloadTask.taskDescription)")
         // 1
         if let downloadUrl = downloadTask.originalRequest?.URL?.absoluteString,
             download = activeDownloads[downloadUrl] {
@@ -142,6 +149,10 @@ class DownloadHandler: NSObject, BaseDownload, NSURLSessionDelegate {
         }
     }
     
+    
+    func URLSession(session: NSURLSession, task: NSURLSessionTask, didCompleteWithError error: NSError?) {
+        print("error : \(error)")
+    }
     //MARK: NSURLSeesionDelegate
     func URLSessionDidFinishEventsForBackgroundURLSession(session: NSURLSession) {
     if let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate {

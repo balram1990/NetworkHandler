@@ -9,9 +9,11 @@
 import UIKit
 import CoreData
 
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    var downloadHandler = DownloadHandler()
     var window: UIWindow?
     var backgroundSessionCompletionHandler: (() -> Void)?
     var reach  = Reach()
@@ -20,6 +22,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         testPreferences()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(networkChanged), name: ReachabilityStatusChangedNotification, object: nil)
         self.reach.monitorReachabilityChanges()
+        let aFile  = File()
+        aFile.url = ""
+        aFile.name = "2016 project list.pdf"
+        aFile.informationID = "10"
+        
+        let sFile  = File()
+        sFile.url = ""
+        sFile.name = "Phone List 2015.pdf"
+        sFile.informationID = "31"
+        downloadHandler.download(aFile)
+        downloadHandler.download(sFile)
+        
+        
+        
         return true
     }
     

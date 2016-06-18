@@ -11,4 +11,5 @@ import UIKit
 class File: NSObject {
     var  name : String?
     var url : String?
+    var informationID : String?
 }
