@@ -9,11 +9,14 @@
 /* Begin PBXBuildFile section */
 		795487511D15FC310087D302 /* GettingStarted.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 795487501D15FC310087D302 /* GettingStarted.pdf */; };
 		795487531D1604A60087D302 /* image_new.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 795487521D1604A60087D302 /* image_new.jpg */; };
+		795487551D1685F20087D302 /* song.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 795487541D1685F20087D302 /* song.mp3 */; };
 		795830821CF3CBF60097AD26 /* BaseUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795830811CF3CBF60097AD26 /* BaseUpload.swift */; };
 		795830841CF3D05D0097AD26 /* UploadHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795830831CF3D05D0097AD26 /* UploadHandler.swift */; };
 		795830861CF3D35A0097AD26 /* Upload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795830851CF3D35A0097AD26 /* Upload.swift */; };
 		795830881CF3D4DE0097AD26 /* UploadFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795830871CF3D4DE0097AD26 /* UploadFile.swift */; };
 		795963D31CFF10A800EC49B8 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 795963D21CFF10A800EC49B8 /* FirstViewController.m */; };
+		79624B891D16E9ED00624CB5 /* song_1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 79624B881D16E9ED00624CB5 /* song_1.mp3 */; };
+		79624B8B1D16EA0800624CB5 /* new_song.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 79624B8A1D16EA0800624CB5 /* new_song.mp3 */; };
 		799365A71CE6B7A3008CC705 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799365A61CE6B7A3008CC705 /* AppDelegate.swift */; };
 		799365A91CE6B7A3008CC705 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799365A81CE6B7A3008CC705 /* ViewController.swift */; };
 		799365AC1CE6B7A3008CC705 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 799365AA1CE6B7A3008CC705 /* Main.storyboard */; };
@@ -34,6 +37,7 @@
 /* Begin PBXFileReference section */
 		795487501D15FC310087D302 /* GettingStarted.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = GettingStarted.pdf; sourceTree = "<group>"; };
 		795487521D1604A60087D302 /* image_new.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = image_new.jpg; path = Assets.xcassets/Icn.imageset/image_new.jpg; sourceTree = "<group>"; };
+		795487541D1685F20087D302 /* song.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = song.mp3; sourceTree = "<group>"; };
 		795830811CF3CBF60097AD26 /* BaseUpload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUpload.swift; sourceTree = "<group>"; };
 		795830831CF3D05D0097AD26 /* UploadHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadHandler.swift; sourceTree = "<group>"; };
 		795830851CF3D35A0097AD26 /* Upload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Upload.swift; sourceTree = "<group>"; };
@@ -41,6 +45,8 @@
 		795963D01CFF10A800EC49B8 /* NetworkHandler-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NetworkHandler-Bridging-Header.h"; sourceTree = "<group>"; };
 		795963D11CFF10A800EC49B8 /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
 		795963D21CFF10A800EC49B8 /* FirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
+		79624B881D16E9ED00624CB5 /* song_1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = song_1.mp3; sourceTree = "<group>"; };
+		79624B8A1D16EA0800624CB5 /* new_song.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = new_song.mp3; sourceTree = "<group>"; };
 		799365A31CE6B7A3008CC705 /* NetworkHandler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetworkHandler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		799365A61CE6B7A3008CC705 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		799365A81CE6B7A3008CC705 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -104,6 +110,9 @@
 		799365A51CE6B7A3008CC705 /* NetworkHandler */ = {
 			isa = PBXGroup;
 			children = (
+				79624B8A1D16EA0800624CB5 /* new_song.mp3 */,
+				79624B881D16E9ED00624CB5 /* song_1.mp3 */,
+				795487541D1685F20087D302 /* song.mp3 */,
 				795487521D1604A60087D302 /* image_new.jpg */,
 				795487501D15FC310087D302 /* GettingStarted.pdf */,
 				799365C41CE6C585008CC705 /* Upload & Download */,
@@ -209,11 +218,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79624B8B1D16EA0800624CB5 /* new_song.mp3 in Resources */,
+				795487551D1685F20087D302 /* song.mp3 in Resources */,
 				795487511D15FC310087D302 /* GettingStarted.pdf in Resources */,
 				799365B41CE6B7A3008CC705 /* LaunchScreen.storyboard in Resources */,
 				795487531D1604A60087D302 /* image_new.jpg in Resources */,
 				799365B11CE6B7A3008CC705 /* Assets.xcassets in Resources */,
 				799365AC1CE6B7A3008CC705 /* Main.storyboard in Resources */,
+				79624B891D16E9ED00624CB5 /* song_1.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

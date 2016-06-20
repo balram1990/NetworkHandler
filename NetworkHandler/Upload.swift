@@ -10,14 +10,17 @@ import UIKit
 
 class Upload: NSObject {
 
-    var url : String?
+    var url : NSURL?
     var isUploading = false
     var progress : Float = 0.0
     var uploadTask : NSURLSessionUploadTask?
     var resumeData : NSData?
     var data : NSData?
-    init(url : String, data : NSData?) {
+    var fileID : String?
+    var taskIndentifier : Int = 0
+    init(url : NSURL?, data : NSData?, fileID : String?) {
         self.url = url
         self.data = data
+        self.fileID = fileID
     }
 }

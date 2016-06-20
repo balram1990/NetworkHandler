@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UploadHandler: NSObject, BaseUpload, NSURLSessionDelegate, NSURLSessionStreamDelegate {
+class UploadHandler: NSObject, BaseUpload, NSURLSessionDelegate, NSURLSessionTaskDelegate {
     
     var activeUploads = [String : Upload]()
     
@@ -24,110 +24,47 @@ class UploadHandler: NSObject, BaseUpload, NSURLSessionDelegate, NSURLSessionStr
     }
     
     func upload(file: UploadFile) {
-        if let urlString = file.url, url = NSURL(string : urlString) {
-            let anUpload = Upload(url: urlString, data: file.data!)
-            let upload_File_Req: NSMutableURLRequest = NSMutableURLRequest(URL: url)
-            upload_File_Req.HTTPMethod = "POST"
-            upload_File_Req.setValue("application/octet-stream", forHTTPHeaderField: "Content-Type")
-            upload_File_Req.setValue("image_new.jpg", forHTTPHeaderField: "FilePath")
-            upload_File_Req.setValue("9314", forHTTPHeaderField: "UserID")
-            upload_File_Req.setValue("28516", forHTTPHeaderField: "ComputerID")
-            upload_File_Req.setValue("True", forHTTPHeaderField: "KeepCopyInCloud")
-            
-            upload_File_Req.setValue("1035198", forHTTPHeaderField: "FileID")
-            upload_File_Req.setValue("44426", forHTTPHeaderField: "FileUploadID")
-            upload_File_Req.setValue("C:\\BaseFolder\\BaseFolderWebApp_Publish\\CloudFiles\\28516\\image_new.jpg", forHTTPHeaderField: "CompleteFilePath")
+        let uploadURL =  NSURL(string : ViewController.UploadURL)
+        let anUpload = Upload(url: uploadURL!, data: file.fileData, fileID: file.fileID)
+        let upload_File_Req: NSMutableURLRequest = NSMutableURLRequest(URL: uploadURL!)
+        upload_File_Req.HTTPMethod = "POST"
+        upload_File_Req.setValue("application/octet-stream", forHTTPHeaderField: "Content-Type")
+        upload_File_Req.setValue(file.filePath!, forHTTPHeaderField: "FilePath")
+        //set it to particular location
+        upload_File_Req.setValue("9314", forHTTPHeaderField: "UserID")
+        upload_File_Req.setValue("28516", forHTTPHeaderField: "ComputerID")
+        //
+        upload_File_Req.setValue(file.shouldKeepInCloud, forHTTPHeaderField: "KeepCopyInCloud")
+        upload_File_Req.setValue(file.fileID, forHTTPHeaderField: "FileID")
+        upload_File_Req.setValue(file.fileUplaodID, forHTTPHeaderField: "FileUploadID")
+        upload_File_Req.setValue(file.completeServerPath, forHTTPHeaderField: "CompleteFilePath")
 
-            let fileURL = NSBundle.mainBundle().URLForResource("image_new", withExtension: "jpg")
-            let sourcePath = NSBundle.mainBundle().pathForResource("image_new", ofType: "jpg")
-            let size = sizeForLocalFilePath(sourcePath!)
-            upload_File_Req.setValue("\(size)", forHTTPHeaderField: "FileSize")
-            let fileData = NSData(contentsOfURL: fileURL!)
-            //let bodyStream = NSInputStream.init(data: fileData!)
-            //bodyStream!.setProperty(0, forKey: NSStreamFileCurrentOffsetKey)
-            //upload_File_Req.HTTPBodyStream  = bodyStream
-            anUpload.uploadTask = uploadSession.uploadTaskWithRequest(upload_File_Req, fromData: fileData!)
-            anUpload.uploadTask?.resume()
-            anUpload.isUploading =  true
-            activeUploads[anUpload.url!] = anUpload
-        }
-    }
-    
-    func sizeForLocalFilePath(filePath:String) -> Int {
-        do {
-            let fileAttributes = try NSFileManager().attributesOfItemAtPath(filePath)
-            if let fileSize = fileAttributes[NSFileSize] as? NSNumber {
-                return fileSize.integerValue
-            } else {
-                print("Failed to get a size attribute from path: \(filePath)")
-            }
-        } catch {
-            print("Failed to get file attributes for local path: \(filePath) with error: \(error)")
-        }
-        return 0
+        upload_File_Req.setValue("\(file.fileSize)", forHTTPHeaderField: "FileSize")
+        let fileData = file.fileData
+        anUpload.uploadTask = uploadSession.uploadTaskWithRequest(upload_File_Req, fromData: fileData!)
+        anUpload.taskIndentifier = (anUpload.uploadTask?.taskIdentifier)!
+        anUpload.uploadTask?.resume()
+        anUpload.isUploading =  true
+        activeUploads[anUpload.fileID!] = anUpload
     }
     
     func cancelUpload(file: UploadFile) {
-        //Get the object object corresponsind to file
-        if let urlString = file.url , anUpload = activeUploads[urlString] {
-            //cancel download
-            anUpload.uploadTask?.cancel()
-            //remove the downlaod object from active downlaods
-            activeUploads[urlString] =  nil
-        }
+//        //Get the object object corresponsind to file
+//        if let urlString = file.url , anUpload = activeUploads[urlString] {
+//            //cancel download
+//            anUpload.uploadTask?.cancel()
+//            //remove the downlaod object from active downlaods
+//            activeUploads[urlString] =  nil
+//        }
     }
     
     func resumeUpload(file: UploadFile) {
         
     }
     
-    
-    //MARK: URLSessionDelegate
-    func URLSession(session: NSURLSession, downloadTask: NSURLSessionDownloadTask, didFinishDownloadingToURL location: NSURL) {
-        // 1
-        if let originalURL = downloadTask.originalRequest?.URL?.absoluteString,
-            destinationURL = Util.localFilePathForUrl(originalURL) {
-            
-            print(destinationURL)
-            
-            // 2
-            let fileManager = NSFileManager.defaultManager()
-            do {
-                try fileManager.removeItemAtURL(destinationURL)
-            } catch {
-                // Non-fatal: file probably doesn't exist
-            }
-            do {
-                try fileManager.copyItemAtURL(location, toURL: destinationURL)
-            } catch let error as NSError {
-                print("Could not copy file to disk: \(error.localizedDescription)")
-            }
-        }
-        
-        // 3
-        if let url = downloadTask.originalRequest?.URL?.absoluteString {
-            activeUploads[url] = nil
-            //inform delegte that downlaoding is finished
-            //            if let trackIndex = trackIndexForDownloadTask(downloadTask) {
-            //                dispatch_async(dispatch_get_main_queue(), {
-            //                    self.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: trackIndex, inSection: 0)], withRowAnimation: .None)
-            //                })
-            //            }
-        }
-    }
-    
-    func URLSession(session: NSURLSession, downloadTask: NSURLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
-        print("Task Description : \(downloadTask.taskDescription)")
-            }
-    
-    
     func URLSession(session: NSURLSession, task: NSURLSessionTask, didCompleteWithError error: NSError?) {
         print("error : \(error)")
     }
-    
-    func URLSession(session: NSURLSession, writeClosedForStreamTask streamTask: NSURLSessionStreamTask) {
-    }
-    
     
     func URLSession(session: NSURLSession, task: NSURLSessionTask, needNewBodyStream completionHandler: (NSInputStream?) -> Void) {
         if let fileURL = NSBundle.mainBundle().URLForResource("image", withExtension: "jpg"),
@@ -137,8 +74,13 @@ class UploadHandler: NSObject, BaseUpload, NSURLSessionDelegate, NSURLSessionStr
             
             completionHandler(inputStream)
         }
-        
     }
+    
+    func URLSession(session: NSURLSession, task: NSURLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {
+        let progress = totalBytesSent/totalBytesExpectedToSend
+        print("Progress : \(progress) made in task indentifer : \(task.taskIdentifier)")
+    }
+    
     
     //MARK: NSURLSeesionDelegate
     func URLSessionDidFinishEventsForBackgroundURLSession(session: NSURLSession) {
