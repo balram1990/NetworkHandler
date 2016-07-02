@@ -15,8 +15,41 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RWa-IB-Wzb">
+                                <rect key="frame" x="225" y="299" width="150" height="2"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="Nic-17-k4y"/>
+                                </constraints>
+                            </progressView>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nSP-Z4-eTe">
+                                <rect key="frame" x="225" y="330" width="150" height="2"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="1v5-zx-Sbb"/>
+                                </constraints>
+                            </progressView>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6DB-ge-QBp">
+                                <rect key="frame" x="225" y="365" width="150" height="2"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="mSy-Ui-WwG"/>
+                                </constraints>
+                            </progressView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="nSP-Z4-eTe" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="WE2-yf-R5z"/>
+                            <constraint firstItem="RWa-IB-Wzb" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="cOL-ix-Y7z"/>
+                            <constraint firstItem="6DB-ge-QBp" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fmO-eT-dfc"/>
+                            <constraint firstItem="6DB-ge-QBp" firstAttribute="top" secondItem="nSP-Z4-eTe" secondAttribute="bottom" constant="33" id="fsb-7C-CWs"/>
+                            <constraint firstItem="RWa-IB-Wzb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="oLX-kt-NoJ"/>
+                            <constraint firstItem="nSP-Z4-eTe" firstAttribute="top" secondItem="RWa-IB-Wzb" secondAttribute="bottom" constant="29" id="v6C-1N-vln"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="progress2" destination="6DB-ge-QBp" id="GLn-YY-1Co"/>
+                        <outlet property="progress3" destination="nSP-Z4-eTe" id="NJh-mP-hOk"/>
+                        <outlet property="progressBar" destination="RWa-IB-Wzb" id="qS4-bP-80x"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

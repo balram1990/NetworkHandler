@@ -8,11 +8,14 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UploadHandlerDelegate {
 
     static let UploadURL = "https://www.test-basefolder.com/BaseFolderMobileRestService/MobileUploads.svc/UploadFileWithStream"
     static let UploadQueryURL = "https://www.test-basefolder.com/BaseFolderMobileRestService/MobileUploads.svc/InsertUploadRequest"
     
+    @IBOutlet weak var progressBar: UIProgressView!
+    @IBOutlet weak var progress3: UIProgressView!
+    @IBOutlet weak var progress2: UIProgressView!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -23,17 +26,9 @@ class ViewController: UIViewController {
         
     }
     
-//    func someTask(){
-//        let networkIO = NetworkIO()
-//        
-//        let json =  ["DeviceID" : "12345", "MACAdress" : "1471414"]
-//        networkIO.post("/MountainPowerRestService/SecurityInfo.svc/InsertSecurityInfo", json: json) { (data, response, error) in
-//            print("\(data), response :\(response)")
-//        }
-//    }
-    
     func uploadFile (file : UploadFile) {
         let handler = UploadHandler()
+        handler.delegate = self
         handler.upload(file)
     }
     
@@ -77,5 +72,25 @@ class ViewController: UIViewController {
             }
         }
     }
+    
+    //MARK: UploadHandlerDelegate 
+    func uploadDidMakeProgress(progress: Float, file: UploadFile?) {
+        dispatch_async(dispatch_get_main_queue()) {
+            if file?.name == "song_1"{
+                self.progressBar.progress = progress
+            }else if file?.name == "song" {
+                self.progress3.progress = progress
+            } else if file?.name == "new_song" {
+                self.progress2.progress = progress
+            }
+            
+            
+        }
+    }
+    
+    func uploadDidCompleteWithError(error: NSError?, file: UploadFile?) {
+        print("Upload complete with error: \(error)")
+    }
+    
 }
 

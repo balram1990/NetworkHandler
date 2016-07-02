@@ -8,10 +8,16 @@
 
 import UIKit
 
+protocol UploadHandlerDelegate {
+    func uploadDidMakeProgress(progress : Float, file : UploadFile?)
+    func uploadDidCompleteWithError(error : NSError?, file : UploadFile?)
+}
+
 class UploadHandler: NSObject, BaseUpload, NSURLSessionDelegate, NSURLSessionTaskDelegate {
     
-    var activeUploads = [String : Upload]()
-    
+    var activeUpload : Upload?
+    var currentFile : UploadFile?
+    var delegate : UploadHandlerDelegate?
     lazy var uploadSession : NSURLSession = {
         let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
         let session = NSURLSession(configuration: configuration, delegate: self, delegateQueue: nil)
@@ -45,17 +51,18 @@ class UploadHandler: NSObject, BaseUpload, NSURLSessionDelegate, NSURLSessionTas
         anUpload.taskIndentifier = (anUpload.uploadTask?.taskIdentifier)!
         anUpload.uploadTask?.resume()
         anUpload.isUploading =  true
-        activeUploads[anUpload.fileID!] = anUpload
+        activeUpload = anUpload
+        self.currentFile = file
     }
     
     func cancelUpload(file: UploadFile) {
-//        //Get the object object corresponsind to file
-//        if let urlString = file.url , anUpload = activeUploads[urlString] {
-//            //cancel download
-//            anUpload.uploadTask?.cancel()
-//            //remove the downlaod object from active downlaods
-//            activeUploads[urlString] =  nil
-//        }
+        //Get the object object corresponsind to file
+        if let anUpload = activeUpload {
+            //cancel download
+            anUpload.uploadTask?.cancel()
+            //remove the downlaod object from active downlaods
+            activeUpload =  nil
+        }
     }
     
     func resumeUpload(file: UploadFile) {
@@ -63,6 +70,7 @@ class UploadHandler: NSObject, BaseUpload, NSURLSessionDelegate, NSURLSessionTas
     }
     
     func URLSession(session: NSURLSession, task: NSURLSessionTask, didCompleteWithError error: NSError?) {
+        self.delegate?.uploadDidCompleteWithError(error, file: currentFile)
         print("error : \(error)")
     }
     
@@ -77,8 +85,9 @@ class UploadHandler: NSObject, BaseUpload, NSURLSessionDelegate, NSURLSessionTas
     }
     
     func URLSession(session: NSURLSession, task: NSURLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {
-        let progress = totalBytesSent/totalBytesExpectedToSend
-        print("Progress : \(progress) made in task indentifer : \(task.taskIdentifier)")
+        let progress = Float(totalBytesSent) / Float(totalBytesExpectedToSend)
+        print("Progress \(progress)")
+        self.delegate?.uploadDidMakeProgress(progress, file: currentFile)
     }
     
     
