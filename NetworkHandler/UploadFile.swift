@@ -45,4 +45,8 @@ class UploadFile: NSObject {
         }
         return nil
     }()
+    
+    lazy var directoryPath : String? = {
+        return NSBundle.mainBundle().pathForResource(self.name, ofType: self.type)
+    }()
 }

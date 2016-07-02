@@ -13,7 +13,7 @@ protocol UploadHandlerDelegate {
     func uploadDidCompleteWithError(error : NSError?, file : UploadFile?)
 }
 
-class UploadHandler: NSObject, BaseUpload, NSURLSessionDelegate, NSURLSessionTaskDelegate {
+class UploadHandler: NSObject, BaseUpload, NSURLSessionDelegate, NSURLSessionTaskDelegate,NSURLSessionStreamDelegate {
     
     var activeUpload : Upload?
     var currentFile : UploadFile?
@@ -46,8 +46,11 @@ class UploadHandler: NSObject, BaseUpload, NSURLSessionDelegate, NSURLSessionTas
         upload_File_Req.setValue(file.completeServerPath, forHTTPHeaderField: "CompleteFilePath")
 
         upload_File_Req.setValue("\(file.fileSize)", forHTTPHeaderField: "FileSize")
-        let fileData = file.fileData
-        anUpload.uploadTask = uploadSession.uploadTaskWithRequest(upload_File_Req, fromData: fileData!)
+        //let fileData = file.fileData
+        let inputStream = NSInputStream.init(fileAtPath: file.directoryPath!)
+        inputStream?.setProperty(0, forKey: NSStreamFileCurrentOffsetKey)
+        upload_File_Req.HTTPBodyStream = inputStream
+        anUpload.uploadTask = uploadSession.uploadTaskWithStreamedRequest(upload_File_Req)
         anUpload.taskIndentifier = (anUpload.uploadTask?.taskIdentifier)!
         anUpload.uploadTask?.resume()
         anUpload.isUploading =  true
@@ -85,8 +88,8 @@ class UploadHandler: NSObject, BaseUpload, NSURLSessionDelegate, NSURLSessionTas
     }
     
     func URLSession(session: NSURLSession, task: NSURLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {
-        let progress = Float(totalBytesSent) / Float(totalBytesExpectedToSend)
-        print("Progress \(progress)")
+        let progress = Float(totalBytesSent) / Float((currentFile?.fileSize)!)
+        print("progress: \(progress)")
         self.delegate?.uploadDidMakeProgress(progress, file: currentFile)
     }
     
