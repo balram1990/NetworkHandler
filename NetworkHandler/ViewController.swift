@@ -12,6 +12,8 @@ class ViewController: UIViewController, UploadHandlerDelegate {
 
     static let UploadURL = "https://www.test-basefolder.com/BaseFolderMobileRestService/MobileUploads.svc/UploadFileWithStream"
     static let UploadQueryURL = "https://www.test-basefolder.com/BaseFolderMobileRestService/MobileUploads.svc/InsertUploadRequest"
+    static let CheckFileAlreadyInUpload = "https://www.test-basefolder.com/BaseFolderMobileRestService/MobileUploads.svc/CheckFileExistsInUploads"
+    
     
     @IBOutlet weak var progressBar: UIProgressView!
     @IBOutlet weak var progress3: UIProgressView!
@@ -20,10 +22,11 @@ class ViewController: UIViewController, UploadHandlerDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        initiateUploadRequestForFile("song_1", type: "mp3", keepInCloud: "True")
-        initiateUploadRequestForFile("song", type: "mp3", keepInCloud: "True")
-        initiateUploadRequestForFile("new_song", type: "mp3", keepInCloud: "True")
+//        initiateUploadRequestForFile("song_1", type: "mp3", keepInCloud: "True")
+//        initiateUploadRequestForFile("song", type: "mp3", keepInCloud: "True")
+//        initiateUploadRequestForFile("new_song", type: "mp3", keepInCloud: "True")
         
+        checkWhetherUploadAlreadyExist("song_1", type: "mp3", fileUploadID: "51414")
     }
     
     func uploadFile (file : UploadFile) {
@@ -64,12 +67,44 @@ class ViewController: UIViewController, UploadHandlerDelegate {
                     uploadItem.completeServerPath = json!["FilePath"] as? String
                     uploadItem.fileID = json!["FileID"] as? String
                     uploadItem.fileUplaodID = json!["FileUploadID"] as? String
+                    print("FileName: \(uploadItem.name! + uploadItem.type!), fileUploadID: \(uploadItem.fileUplaodID)")
                     uploadItem.canBeShared  = json!["CanBeShared"] as? String
                     self.uploadFile(uploadItem)
                 } else {
                     print("Upload initiation failed : %@", json!["ReturnMsg"])
                 }
             }
+        }
+    }
+    
+    func checkWhetherUploadAlreadyExist (name : String, type : String, fileUploadID : String) {
+        let uploadItem = UploadFile()
+        uploadItem.name =  name
+        uploadItem.type = type
+        let json = [
+            "FileName" : name + "." + type,
+            "FileUploadID" : fileUploadID
+        ]
+        NetworkIO().post(ViewController.CheckFileAlreadyInUpload, json: json) { (data, response, error) in
+            if let _ = error {
+                print("Could not determince status")
+                return
+            }
+            var jsonResponse: NSDictionary? = nil
+            do  {
+                jsonResponse = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0)) as? NSDictionary
+            } catch {
+                print("Something went wrong while parsing JSON")
+                return
+            }
+            var offset : String?
+            if let _ = jsonResponse {
+                if jsonResponse!["ReturnStatus"] as? String == "0" {
+                     offset = jsonResponse!["FileSize"] as? String
+                }
+            }
+            print("Offset: \(offset)")
+            
         }
     }
     
